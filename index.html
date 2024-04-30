@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Astronaut memory</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<video src="images/galaxy.mp4" muted autoplay loop></video>
+<div class="audio">
+  <audio id="myAudio" loop>
+    <source src="sounds/love.mp3" type="audio/mpeg">
+  </audio>
+  <button class="k" onclick="togglePlayPause()">🔊</button>
+</div>
+<div class="right">
+<a href="https://github.com/AdeeloD"><img  class="k"src="images/github.png"></a>
+</div>
+<div>
+  <h1 id="level-title">Press X Key to Start</h1>
+</div>
+  <div class="container">
+    <div lass="row">
+
+      <div type="button" id="green" class="btn green">
+
+      </div>
+
+      <div type="button" id="red" class="btn red">
+
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div type="button" id="yellow" class="btn yellow">
+
+      </div>
+      <div type="button" id="blue" class="btn blue">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="game.js" charset="utf-8"></script>
+
+</body>
+
+</html>
