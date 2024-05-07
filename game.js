@@ -1,12 +1,11 @@
 var buttonColours = ["red", "blue", "green", "yellow"];
-
 var gamePattern = [];
 var userClickedPattern = [];
-
 var started = false;
 var level = 0;
 
-$(document).keypress(function() {
+// Handle user input (keypress or touchstart)
+$(document).on("keypress touchstart", function() {
   if (!started) {
     $("#level-title").text("Level " + level);
     nextSequence();
@@ -14,38 +13,32 @@ $(document).keypress(function() {
   }
 });
 
+// Handle button clicks
 $(".btn").click(function() {
-
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
-
   playSound(userChosenColour);
   animatePress(userChosenColour);
-
-  checkAnswer(userClickedPattern.length-1);
+  checkAnswer(userClickedPattern.length - 1);
 });
 
 function checkAnswer(currentLevel) {
-
-    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-      if (userClickedPattern.length === gamePattern.length){
-        setTimeout(function () {
-          nextSequence();
-        }, 1000);
-      }
-    } else {
-      playSound("bleach_parrot_jaj_ne");
-      $("body").addClass("game-over");
-      $("#level-title").text("Game Over, Press R to Restart");
-
-      setTimeout(function () {
-        $("body").removeClass("game-over");
-      }, 200);
-
-      startOver();
+  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+    if (userClickedPattern.length === gamePattern.length) {
+      setTimeout(function() {
+        nextSequence();
+      }, 1000);
     }
+  } else {
+    playSound("bleach_parrot_jaj_ne");
+    $("body").addClass("game-over");
+    $("#level-title").text("Game Over, Press R to Restart");
+    setTimeout(function() {
+      $("body").removeClass("game-over");
+    }, 200);
+    startOver();
+  }
 }
-
 
 function nextSequence() {
   userClickedPattern = [];
@@ -54,14 +47,13 @@ function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
-
   $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
   playSound(randomChosenColour);
 }
 
 function animatePress(currentColor) {
   $("#" + currentColor).addClass("pressed");
-  setTimeout(function () {
+  setTimeout(function() {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
 }
@@ -76,9 +68,10 @@ function startOver() {
   gamePattern = [];
   started = false;
 }
+
+// Toggle play/pause for audio
 function togglePlayPause() {
   var myAudio = $("#myAudio")[0];
-
   if (myAudio.paused) {
     myAudio.play();
     $("button").html("🔇");
