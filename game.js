@@ -34,7 +34,7 @@ function checkAnswer(currentLevel) {
         }, 1000);
       }
     } else {
-      playSound("wrong");
+      playSound("bleach_parrot_jaj_ne");
       $("body").addClass("game-over");
       $("#level-title").text("Game Over, Press R to Restart");
 
