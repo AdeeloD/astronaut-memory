@@ -4,7 +4,7 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
-// Handle user input (keypress or touchstart)
+
 $(document).on("keypress touchstart", function() {
   if (!started) {
     $("#level-title").text("Level " + level);
@@ -13,7 +13,7 @@ $(document).on("keypress touchstart", function() {
   }
 });
 
-// Handle button clicks
+
 $(".btn").click(function() {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
@@ -69,7 +69,7 @@ function startOver() {
   started = false;
 }
 
-// Toggle play/pause for audio
+
 function togglePlayPause() {
   var myAudio = $("#myAudio")[0];
   if (myAudio.paused) {
